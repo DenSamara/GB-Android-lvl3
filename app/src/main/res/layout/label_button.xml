@@ -11,6 +11,7 @@
         android:layout_height="wrap_content"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         tools:text="00"
+        android:layout_margin="5dp"
         />
 
     <android.support.v7.widget.AppCompatButton

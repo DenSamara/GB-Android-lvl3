@@ -21,7 +21,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
 
         presenter = new Presenter();
         presenter.setModel(ModelManager.getInstance().getModel());
-        presenter.onAttachView(this);
+        presenter.onAttachView(getApplicationContext(), this);
     }
 
     public void setupView(int viewID) {

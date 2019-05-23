@@ -1,5 +1,7 @@
 package ru.home.denis.konovalov.homework;
 
+import android.content.Context;
+
 public interface Contract {
     interface View {
         void changeText(byte id, String text);
@@ -7,7 +9,7 @@ public interface Contract {
     }
     interface Presenter{
         void onButtonClicked(byte id);
-        void onAttachView(Contract.View view);
+        void onAttachView(Context ctx, Contract.View view);
         void onDetachView();
         void onDestroy();
     }
