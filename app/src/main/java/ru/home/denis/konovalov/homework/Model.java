@@ -5,6 +5,10 @@ public class Model implements Contract.Model{
     public final static byte ID_MINUTE = 2;
     public final static byte ID_SECOND = 3;
 
+    public enum ID{
+        HOUR, MINUTE, SECOND
+    }
+
     private short hour;
     private short minute;
     private short second;
@@ -13,29 +17,29 @@ public class Model implements Contract.Model{
         reset();
     }
 
-    public void setHour(short hour) {
-        this.hour = hour;
-    }
-
-    public void setMinute(short minute) {
-        this.minute = minute;
-    }
-
-    public void setSecond(short second) {
-        this.second = second;
-    }
-
-    public short getHour() {
-        return hour;
-    }
-
-    public short getMinute() {
-        return minute;
-    }
-
-    public short getSecond() {
-        return second;
-    }
+//    public void setHour(short hour) {
+//        this.hour = hour;
+//    }
+//
+//    public void setMinute(short minute) {
+//        this.minute = minute;
+//    }
+//
+//    public void setSecond(short second) {
+//        this.second = second;
+//    }
+//
+//    public short getHour() {
+//        return hour;
+//    }
+//
+//    public short getMinute() {
+//        return minute;
+//    }
+//
+//    public short getSecond() {
+//        return second;
+//    }
 
     public void reset(){
         hour = 0;
@@ -44,28 +48,28 @@ public class Model implements Contract.Model{
     }
 
     @Override
-    public void inc(byte id){
+    public void inc(ID id){
         switch (id){
-            case ID_HOUR:
+            case HOUR:
                 ++hour;
                 break;
-            case ID_MINUTE:
+            case MINUTE:
                 ++minute;
                 break;
-            case ID_SECOND:
+            case SECOND:
                 ++second;
                 break;
         }
     }
 
     @Override
-    public short getData(byte id) {
+    public short getData(ID id) {
         switch (id){
-            case ID_HOUR:
+            case HOUR:
                 return hour;
-            case ID_MINUTE:
+            case MINUTE:
                 return minute;
-            case ID_SECOND:
+            case SECOND:
                 return second;
         }
         return -1;

@@ -14,7 +14,7 @@ public interface Contract {
         void onDestroy();
     }
     interface Model{
-        void inc(byte id);
-        short getData(byte id);
+        void inc(ru.home.denis.konovalov.homework.Model.ID id);
+        short getData(ru.home.denis.konovalov.homework.Model.ID id);
     }
 }

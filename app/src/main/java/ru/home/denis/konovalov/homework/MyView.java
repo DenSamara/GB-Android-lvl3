@@ -1,26 +1,30 @@
 package ru.home.denis.konovalov.homework;
 
+import android.content.Context;
 import android.support.v7.widget.AppCompatButton;
 import android.view.View;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
-public class MyView {
-    private byte id;
+public class MyView extends LinearLayout {
+    private Model.ID id;
     private TextView textView;
     private AppCompatButton button;
 
-    public static MyView newInstance(View view, byte id){
-        TextView textView = view.findViewById(R.id.text);
-        AppCompatButton button = view.findViewById(R.id.button);
-
-        return new MyView(id, textView, button);
-    }
-
-    public MyView(byte id, TextView textView, AppCompatButton button){
+    public MyView(Context context, Model.ID id) {
+        super(context);
         this.id = id;
-        this.textView = textView;
-        this.button = button;
     }
+
+    public static MyView newInstance(Context ctx, Model.ID id){
+        return new MyView(ctx, id);
+    }
+
+//    public MyView(byte id, TextView textView, AppCompatButton button){
+//        this.id = id;
+//        this.textView = textView;
+//        this.button = button;
+//    }
 
     public void setButtonClickListener(View.OnClickListener listener){
         button.setOnClickListener(listener);
@@ -34,7 +38,7 @@ public class MyView {
         this.textView.setText(text);
     }
 
-    public byte getId() {
+    public Model.ID ID() {
         return id;
     }
 }
