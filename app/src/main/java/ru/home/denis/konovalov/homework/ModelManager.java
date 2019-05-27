@@ -2,7 +2,7 @@ package ru.home.denis.konovalov.homework;
 
 public class ModelManager {
     private final Model model;
-
+    private final Object lock = new Object();
     private static ModelManager modelManager;
     static {
         modelManager = new ModelManager();
@@ -12,11 +12,13 @@ public class ModelManager {
         model = new Model();
     }
 
-    public static ModelManager getInstance(){
+    public static ModelManager getInstance() {
         return modelManager;
     }
 
     public Model getModel() {
-        return model;
+        synchronized (lock) {
+            return model;
+        }
     }
 }

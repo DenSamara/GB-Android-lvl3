@@ -1,13 +1,18 @@
 package ru.home.denis.konovalov.homework;
 
-public class Model implements Contract.Model{
-    public final static byte ID_HOUR = 1;
-    public final static byte ID_MINUTE = 2;
-    public final static byte ID_SECOND = 3;
+import android.support.annotation.IntDef;
 
-    public enum ID{
-        HOUR, MINUTE, SECOND
-    }
+import java.lang.annotation.Retention;
+
+import static java.lang.annotation.RetentionPolicy.SOURCE;
+
+public class Model implements Contract.Model{
+    @Retention(SOURCE)
+    @IntDef({HOUR, MINUTE, SECOND})
+    public @interface ModelID{}
+    public static final byte HOUR = 1;
+    public static final byte MINUTE = 2;
+    public static final byte SECOND = 3;
 
     private short hour;
     private short minute;
@@ -48,7 +53,7 @@ public class Model implements Contract.Model{
     }
 
     @Override
-    public void inc(ID id){
+    public void inc(@ModelID int id){
         switch (id){
             case HOUR:
                 ++hour;
@@ -63,7 +68,7 @@ public class Model implements Contract.Model{
     }
 
     @Override
-    public short getData(ID id) {
+    public short getData(@ModelID int id) {
         switch (id){
             case HOUR:
                 return hour;

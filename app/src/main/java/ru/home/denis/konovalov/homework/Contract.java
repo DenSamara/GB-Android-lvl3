@@ -1,20 +1,20 @@
 package ru.home.denis.konovalov.homework;
 
-import android.content.Context;
-
 public interface Contract {
     interface View {
-        void changeText(byte id, String text);
-        void changeButtonText(byte id, String text);
+        void changeText(@ru.home.denis.konovalov.homework.Model.ModelID int id, String text);
+        void changeButtonText(@ru.home.denis.konovalov.homework.Model.ModelID int id, String text);
     }
+
     interface Presenter{
-        void onButtonClicked(byte id);
-        void onAttachView(Context ctx, Contract.View view);
+        void onButtonClicked(@ru.home.denis.konovalov.homework.Model.ModelID int id);
+        void onAttachView(android.view.View parent, Contract.View view);
         void onDetachView();
         void onDestroy();
     }
+
     interface Model{
-        void inc(ru.home.denis.konovalov.homework.Model.ID id);
-        short getData(ru.home.denis.konovalov.homework.Model.ID id);
+        void inc(@ru.home.denis.konovalov.homework.Model.ModelID int id);
+        short getData(@ru.home.denis.konovalov.homework.Model.ModelID int id);
     }
 }
