@@ -5,7 +5,9 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.SparseArray;
 import android.view.View;
 
-public class MainActivity extends AppCompatActivity implements Contract.View {
+import java.util.Locale;
+
+public class MainActivity extends AppCompatActivity implements Contract.View, Contract.RecourceManager {
     private final static String TAG = MainActivity.class.getSimpleName();
     private Presenter presenter;
     private SparseArray<MyView> items;
@@ -16,8 +18,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
         setupView(R.layout.activity_main);
 
         presenter = new Presenter(ModelManager.getInstance().getModel());
-        View view = getLayoutInflater().inflate(R.layout.activity_main, null);
-        presenter.onAttachView(view, this);
+        presenter.onAttachView(this, this);
     }
 
     public void setupView(int viewID) {
@@ -27,7 +28,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
         view1.setButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onButtonClicked(Model.HOUR);
+                presenter.onButtonClicked(MainActivity.this, Model.HOUR);
             }
         });
 
@@ -35,7 +36,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
         view2.setButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onButtonClicked(Model.MINUTE);
+                presenter.onButtonClicked(MainActivity.this, Model.MINUTE);
             }
         });
 
@@ -43,7 +44,7 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
         view3.setButtonClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                presenter.onButtonClicked(Model.SECOND);
+                presenter.onButtonClicked(MainActivity.this, Model.SECOND);
             }
         });
 
@@ -70,5 +71,16 @@ public class MainActivity extends AppCompatActivity implements Contract.View {
     public void changeButtonText(@Model.ModelID int id, String text) {
         MyView item = items.get(id);
         item.setButtonText(text);
+    }
+
+    @Override
+    public String getLabelString(int id, short value) {
+        return String.format(Locale.ENGLISH, "%02d", value);
+    }
+
+    @Override
+    public String getButtonString(int id, short value) {
+        @Model.ModelID int modelID = id;
+        return String.format(Locale.ENGLISH, "%s", modelID);
     }
 }

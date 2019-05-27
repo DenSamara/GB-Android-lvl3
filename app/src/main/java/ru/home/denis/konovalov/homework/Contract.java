@@ -7,8 +7,8 @@ public interface Contract {
     }
 
     interface Presenter{
-        void onButtonClicked(@ru.home.denis.konovalov.homework.Model.ModelID int id);
-        void onAttachView(android.view.View parent, Contract.View view);
+        void onButtonClicked(Contract.RecourceManager manager, @ru.home.denis.konovalov.homework.Model.ModelID int id);
+        void onAttachView(RecourceManager manager, Contract.View view);
         void onDetachView();
         void onDestroy();
     }
@@ -16,5 +16,10 @@ public interface Contract {
     interface Model{
         void inc(@ru.home.denis.konovalov.homework.Model.ModelID int id);
         short getData(@ru.home.denis.konovalov.homework.Model.ModelID int id);
+    }
+
+    interface RecourceManager{
+        String getLabelString(@ru.home.denis.konovalov.homework.Model.ModelID int id, short value);
+        String getButtonString(@ru.home.denis.konovalov.homework.Model.ModelID int id, short value);
     }
 }

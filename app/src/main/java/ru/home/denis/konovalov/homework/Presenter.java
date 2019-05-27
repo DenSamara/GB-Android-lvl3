@@ -1,8 +1,5 @@
 package ru.home.denis.konovalov.homework;
 
-import android.content.Context;
-import android.view.View;
-
 public class Presenter implements Contract.Presenter {
     private Contract.View view;
     private Contract.Model model;
@@ -12,34 +9,32 @@ public class Presenter implements Contract.Presenter {
     }
 
     @Override
-    public void onButtonClicked(@Model.ModelID int id) {
-        if (model != null) {
+    public void onButtonClicked(Contract.RecourceManager manager, @Model.ModelID int id) {
+        if (manager != null && model != null) {
             model.inc(id);
             short newValue = model.getData(id);
             if (view != null) {
-                view.changeText(id, Formatter.formatLabelText(newValue));
-//                view.changeButtonText(id, Formatter.formatButtonText(id, newValue));
+                view.changeText(id, manager.getLabelString(id, newValue));
+                view.changeButtonText(id, manager.getButtonString(id, newValue));
             }
         }
     }
 
 
     @Override
-    public void onAttachView(View parent, Contract.View view) {
+    public void onAttachView(Contract.RecourceManager manager, Contract.View view) {
         this.view = view;
 
         //Надо проставить значения для кнопок и ярлыков
-        if (parent != null && model != null && this.view != null) {
-            Context ctx = parent.getContext();
+        if (model != null && this.view != null) {
+            this.view.changeText(Model.HOUR, manager.getLabelString(Model.HOUR, model.getData(Model.HOUR)));
+//            this.view.changeButtonText(Model.HOUR, ctx.getString(R.string.hour));
 
-            this.view.changeText(Model.HOUR, Formatter.formatLabelText(model.getData(Model.HOUR)));
-            this.view.changeButtonText(Model.HOUR, ctx.getString(R.string.hour));
+            this.view.changeText(Model.MINUTE, manager.getLabelString(Model.MINUTE, model.getData(Model.MINUTE)));
+//            this.view.changeButtonText(Model.MINUTE, ctx.getString(R.string.minutes));
 
-            this.view.changeText(Model.MINUTE, Formatter.formatLabelText(model.getData(Model.MINUTE)));
-            this.view.changeButtonText(Model.MINUTE, ctx.getString(R.string.minutes));
-
-            this.view.changeText(Model.SECOND, Formatter.formatLabelText(model.getData(Model.SECOND)));
-            this.view.changeButtonText(Model.SECOND, ctx.getString(R.string.seconds));
+            this.view.changeText(Model.SECOND, manager.getLabelString(Model.SECOND, model.getData(Model.SECOND)));
+//            this.view.changeButtonText(Model.SECOND, ctx.getString(R.string.seconds));
         }
     }
 
