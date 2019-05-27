@@ -80,7 +80,19 @@ public class MainActivity extends AppCompatActivity implements Contract.View, Co
 
     @Override
     public String getButtonString(int id, short value) {
-        @Model.ModelID int modelID = id;
-        return String.format(Locale.ENGLISH, "%s", modelID);
+        String txt = getString(R.string.unknown);
+        switch (id){
+            case Model.HOUR:
+                txt = getString(R.string.hour);
+                break;
+            case Model.MINUTE:
+                txt = getString(R.string.minutes);
+                break;
+            case Model.SECOND:
+                txt = getString(R.string.seconds);
+                break;
+
+        }
+        return String.format(Locale.ENGLISH, getString(R.string.txt_button), txt);
     }
 }

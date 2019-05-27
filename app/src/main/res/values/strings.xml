@@ -3,4 +3,7 @@
     <string name="hour">Часы</string>
     <string name="minutes">Минуты</string>
     <string name="seconds">Секунды</string>
+
+    <string name="unknown">Неизвестно</string>
+    <string name="txt_button">Добавить 1 к %s</string>
 </resources>

@@ -28,13 +28,13 @@ public class Presenter implements Contract.Presenter {
         //Надо проставить значения для кнопок и ярлыков
         if (model != null && this.view != null) {
             this.view.changeText(Model.HOUR, manager.getLabelString(Model.HOUR, model.getData(Model.HOUR)));
-//            this.view.changeButtonText(Model.HOUR, ctx.getString(R.string.hour));
+            this.view.changeButtonText(Model.HOUR, manager.getButtonString(Model.HOUR, model.getData(Model.HOUR)));
 
             this.view.changeText(Model.MINUTE, manager.getLabelString(Model.MINUTE, model.getData(Model.MINUTE)));
-//            this.view.changeButtonText(Model.MINUTE, ctx.getString(R.string.minutes));
+            this.view.changeButtonText(Model.MINUTE, manager.getButtonString(Model.MINUTE, model.getData(Model.MINUTE)));
 
             this.view.changeText(Model.SECOND, manager.getLabelString(Model.SECOND, model.getData(Model.SECOND)));
-//            this.view.changeButtonText(Model.SECOND, ctx.getString(R.string.seconds));
+            this.view.changeButtonText(Model.SECOND, manager.getButtonString(Model.SECOND, model.getData(Model.SECOND)));
         }
     }
 
